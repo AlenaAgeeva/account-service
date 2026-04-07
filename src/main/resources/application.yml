@@ -23,5 +23,6 @@ server:
   port: 8080
 logging:
   level:
-    com.bank.account: ERROR
     org.springframework.web: ERROR
+    com.ageeva.accountservice: ERROR
+    org.springframework.cache: ERROR
