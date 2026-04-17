@@ -1,11 +1,7 @@
 package com.ageeva.accountservice.service;
 
-import com.ageeva.accountservice.entity.account.Account;
-import com.ageeva.accountservice.entity.account.AccountStatus;
-import com.ageeva.accountservice.entity.account.AccountType;
-import com.ageeva.accountservice.entity.transaction.Transaction;
-import com.ageeva.accountservice.entity.transaction.TransactionStatus;
-import com.ageeva.accountservice.entity.transaction.TransactionType;
+import com.ageeva.accountservice.entity.account.*;
+import com.ageeva.accountservice.entity.transaction.*;
 import com.ageeva.accountservice.exception.AccountException;
 import com.ageeva.accountservice.repository.AccountRepository;
 
@@ -102,22 +98,18 @@ public class AccountService {
     @Transactional
     public void blockAccount(UUID accountId, String reason) {
         log.info("Blocking account: {}, reason: {}", accountId, reason);
-
         Account account = getAccount(accountId);
         account.block(reason);
         accountRepository.save(account);
-
         log.info("Account blocked successfully: {}", accountId);
     }
 
     @Transactional
     public void unblockAccount(UUID accountId) {
         log.info("Unblocking account: {}", accountId);
-
         Account account = getAccount(accountId);
         account.unblock();
         accountRepository.save(account);
-
         log.info("Account unblocked successfully: {}", accountId);
     }
 

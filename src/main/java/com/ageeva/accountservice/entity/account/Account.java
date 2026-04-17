@@ -53,7 +53,7 @@ public class Account {
             throw new AccountBalanceException("Deposit amount must be a positive number.");
         }
         if (this.status != AccountStatus.ACTIVE) {
-            throw new AccountStatusException("Account status must be active.");
+            throw new AccountStatusException("Account status must be active, current status is " + this.status);
         }
         this.balance = this.balance.add(amount);
     }
@@ -63,7 +63,7 @@ public class Account {
             throw new AccountBalanceException("Withdrawal  amount must be a positive number.");
         }
         if (!isActive()) {
-            throw new AccountStatusException("Account status must be active.");
+            throw new AccountStatusException("Account status must be active, current status is " + this.status);
         }
         if (!hasSufficientFunds(amount)) {
             throw new AccountBalanceException(
