@@ -55,7 +55,6 @@ public class AccountService {
     public BigDecimal getBalance(UUID accountId) {
         Account account = getAccount(accountId);
         return account.getBalance();
-
     }
 
     @Transactional
@@ -71,7 +70,6 @@ public class AccountService {
         Account account = getAccount(accountId);
         createAndSaveTransaction(accountId, TransactionType.DEPOSIT, amount,
                 account.getBalance(), description, TransactionStatus.COMPLETED);
-
         log.info("Deposit completed. New balance: {}", account.getBalance());
     }
 

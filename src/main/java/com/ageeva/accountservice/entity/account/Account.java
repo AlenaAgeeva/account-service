@@ -52,7 +52,7 @@ public class Account {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new AccountBalanceException("Deposit amount must be a positive number.");
         }
-        if (this.status != AccountStatus.ACTIVE) {
+        if (!isActive()) {
             throw new AccountStatusException("Account status must be active, current status is " + this.status);
         }
         this.balance = this.balance.add(amount);
@@ -116,6 +116,6 @@ public class Account {
     }
 
     private boolean hasSufficientFunds(BigDecimal amount) {
-        return this.balance.compareTo(amount) >= 0;
+        return this.balance.compareTo(amount) > 0;
     }
 }
